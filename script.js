@@ -131,7 +131,7 @@ function handleColor(ticket, id) {
     let ticketColor = ticket.querySelector(".ticket-color");
     ticketColor.addEventListener("click", (e) => {
         // Get ticketIdx from the tickets array
-        let ticketIdx = getTikcetIdx(id);
+        let ticketIdx = getTicketIdx(id);
 
         let currentTicketColor = ticketColor.classList[1];
         // Get ticket color idx
