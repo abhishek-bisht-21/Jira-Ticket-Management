@@ -78,13 +78,14 @@ function createTicket(ticketColor, ticketTask, ticketID) {
     
     // Handling Ticket Removal inside create ticket
     handleRemoval(ticketCont, id);
+    handleLock(ticketCont,id);
 
  
 }
 
 // Handling Ticket Removal
 function handleRemoval(ticket, id) {
-    // removeFlag -> true -> remove
+    // removeFlag == true -> Then only remove ticket
     ticket.addEventListener("click", (e) => {
         if (!removeFlag) return;
 
@@ -96,6 +97,31 @@ function handleRemoval(ticket, id) {
         localStorage.setItem("jira_tickets", strTicketsArr);
         
         ticket.remove(); //UI removal
+    })
+}
+
+function handleLock(ticket, id) {
+    let ticketLockElem = ticket.querySelector(".ticket-lock");
+    let ticketLock = ticketLockElem.children[0];
+    let ticketTaskArea = ticket.querySelector(".task-area");
+    ticketLock.addEventListener("click", (e) => {
+        let ticketIdx = getTikcetIdx(id);
+
+        if (ticketLock.classList.contains(lockClass)) {
+            ticketLock.classList.remove(lockClass);
+            ticketLock.classList.add(unlockClass);
+	    // Giving the feature to edit the Ticket
+            ticketTaskArea.setAttribute("contenteditable", "true");
+        }
+        else {
+            ticketLock.classList.remove(unlockClass);
+            ticketLock.classList.add(lockClass);
+            ticketTaskArea.setAttribute("contenteditable", "false");
+        }
+
+        // Modify data in localStorage (Ticket Task)
+        ticketsArr[ticketIdx].ticketTask = ticketTaskArea.innerText;
+        localStorage.setItem("jira_tickets", JSON.stringify(ticketsArr));
     })
 }
 
