@@ -17,6 +17,44 @@ let removeFlag = false;
 let lockClass = "fa-lock";
 let unlockClass = "fa-lock-open";
 
+
+// Ticket Filtering on basis of color function
+for (let i = 0; i < toolBoxColors.length; i++) {
+    toolBoxColors[i].addEventListener("click", (e) => {
+        let currentToolBoxColor = toolBoxColors[i].classList[0];
+
+        let filteredTickets = ticketsArr.filter((ticketObj, idx) => {
+            return currentToolBoxColor === ticketObj.ticketColor;
+        })
+
+        // Remove previous tickets
+        let allTicketsCont = document.querySelectorAll(".ticket-cont");
+        for (let i = 0; i < allTicketsCont.length; i++) {
+            allTicketsCont[i].remove();
+        }
+        // Display new filtered tickets
+        filteredTickets.forEach((ticketObj, idx) => {
+            createTicket(ticketObj.ticketColor, ticketObj.ticketTask, ticketObj.ticketID);
+        })
+    })
+
+    toolBoxColors[i].addEventListener("dblclick", (e) => {
+        // Remove previous tickets
+        let allTicketsCont = document.querySelectorAll(".ticket-cont");
+        for (let i = 0; i < allTicketsCont.length; i++) {
+            allTicketsCont[i].remove();
+        }
+
+        ticketsArr.forEach((ticketObj, idx) => {
+            createTicket(ticketObj.ticketColor, ticketObj.ticketTask, ticketObj.ticketID);
+        })
+    })
+}
+
+
+
+
+
 // Listener for modal priority coloring
 allPriorityColors.forEach((colorElem, idx) => {
     colorElem.addEventListener("click", (e) => {
@@ -131,7 +169,7 @@ function handleColor(ticket, id) {
     let ticketColor = ticket.querySelector(".ticket-color");
     ticketColor.addEventListener("click", (e) => {
         // Get ticketIdx from the tickets array
-        let ticketIdx = getTicketIdx(id);
+        let ticketIdx = getTicketIdx(id); 
 
         let currentTicketColor = ticketColor.classList[1];
         // Get ticket color idx
