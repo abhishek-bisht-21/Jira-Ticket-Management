@@ -1,4 +1,3 @@
-
 let addBtn = document.querySelector(".add-btn");
 let removeBtn = document.querySelector(".remove-btn");
 let modalCont = document.querySelector(".modal-cont");
@@ -7,16 +6,14 @@ let textareaCont = document.querySelector(".textarea-cont");
 let allPriorityColors = document.querySelectorAll(".priority-color");
 let toolBoxColors = document.querySelectorAll(".color");
 
-let colors = ["lightpink", "lightblue", "lightgreen", "black"]; // Colors array
-let modalPriorityColor = colors[colors.length - 1]; // Black Color is fixed as our Default color
+let colors = ["lightpink", "lightblue", "lightgreen", "black"];
+let modalPriorityColor = colors[colors.length - 1];
 
 let addFlag = false;
 let removeFlag = false;
 
-// Lock and Unlock Icons
 let lockClass = "fa-lock";
 let unlockClass = "fa-lock-open";
-
 
 let ticketsArr = [];
 
@@ -28,9 +25,6 @@ if (localStorage.getItem("jira_tickets")) {
     })
 }
 
-
-
-// Ticket Filtering on basis of color function
 for (let i = 0; i < toolBoxColors.length; i++) {
     toolBoxColors[i].addEventListener("click", (e) => {
         let currentToolBoxColor = toolBoxColors[i].classList[0];
@@ -63,10 +57,6 @@ for (let i = 0; i < toolBoxColors.length; i++) {
     })
 }
 
-
-
-
-
 // Listener for modal priority coloring
 allPriorityColors.forEach((colorElem, idx) => {
     colorElem.addEventListener("click", (e) => {
@@ -78,7 +68,6 @@ allPriorityColors.forEach((colorElem, idx) => {
         modalPriorityColor = colorElem.classList[0];
     })
 })
-
 
 addBtn.addEventListener("click", (e) => {
     // Display Modal
@@ -94,8 +83,6 @@ addBtn.addEventListener("click", (e) => {
         modalCont.style.display = "none";
     }
 })
-
-// Adding Toggling feature to removeFlag variable on clicking remove Button
 removeBtn.addEventListener("click", (e) => {
     removeFlag = !removeFlag;
     console.log(removeFlag);
@@ -125,24 +112,19 @@ function createTicket(ticketColor, ticketTask, ticketID) {
     `;
     mainCont.appendChild(ticketCont);
 
-        // Create object of ticket and add to array
+    // Create object of ticket and add to array
     if (!ticketID) {
         ticketsArr.push({ ticketColor, ticketTask, ticketID: id });
         localStorage.setItem("jira_tickets", JSON.stringify(ticketsArr));
     }
-
-    
-    // Handling Ticket Removal inside create ticket
+    console.log(ticketsArr);
     handleRemoval(ticketCont, id);
-    handleLock(ticketCont,id);
-    handleColor(ticketCont,id);
-
- 
+    handleLock(ticketCont, id);
+    handleColor(ticketCont, id);
 }
 
-// Handling Ticket Removal
 function handleRemoval(ticket, id) {
-    // removeFlag == true -> Then only remove ticket
+    // removeFlag -> true -> remove
     ticket.addEventListener("click", (e) => {
         if (!removeFlag) return;
 
@@ -162,12 +144,11 @@ function handleLock(ticket, id) {
     let ticketLock = ticketLockElem.children[0];
     let ticketTaskArea = ticket.querySelector(".task-area");
     ticketLock.addEventListener("click", (e) => {
-        let ticketIdx = getTicketIdx(id);
+        let ticketIdx = getTikcetIdx(id);
 
         if (ticketLock.classList.contains(lockClass)) {
             ticketLock.classList.remove(lockClass);
             ticketLock.classList.add(unlockClass);
-	    // Giving the feature to edit the Ticket
             ticketTaskArea.setAttribute("contenteditable", "true");
         }
         else {
@@ -182,12 +163,11 @@ function handleLock(ticket, id) {
     })
 }
 
-
 function handleColor(ticket, id) {
     let ticketColor = ticket.querySelector(".ticket-color");
     ticketColor.addEventListener("click", (e) => {
         // Get ticketIdx from the tickets array
-        let ticketIdx = getTicketIdx(id); 
+        let ticketIdx = getTikcetIdx(id);
 
         let currentTicketColor = ticketColor.classList[1];
         // Get ticket color idx
@@ -207,16 +187,12 @@ function handleColor(ticket, id) {
     })
 }
 
-
-
-// Getting idx for a particular id
-function getTicketIdx(id) {
+function getTikcetIdx(id) {
     let ticketIdx = ticketsArr.findIndex((ticketObj) => {
         return ticketObj.ticketID === id;
     })
     return ticketIdx;
 }
-
 
 function setModalToDefault() {
     modalCont.style.display = "none";
