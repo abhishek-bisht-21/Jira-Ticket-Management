@@ -18,6 +18,18 @@ let lockClass = "fa-lock";
 let unlockClass = "fa-lock-open";
 
 
+let ticketsArr = [];
+
+if (localStorage.getItem("jira_tickets")) {
+    // Retrieve and display tickets
+    ticketsArr = JSON.parse(localStorage.getItem("jira_tickets"));
+    ticketsArr.forEach((ticketObj) => {
+        createTicket(ticketObj.ticketColor, ticketObj.ticketTask, ticketObj.ticketID);
+    })
+}
+
+
+
 // Ticket Filtering on basis of color function
 for (let i = 0; i < toolBoxColors.length; i++) {
     toolBoxColors[i].addEventListener("click", (e) => {
@@ -112,6 +124,12 @@ function createTicket(ticketColor, ticketTask, ticketID) {
         </div>
     `;
     mainCont.appendChild(ticketCont);
+
+        // Create object of ticket and add to array
+    if (!ticketID) {
+        ticketsArr.push({ ticketColor, ticketTask, ticketID: id });
+        localStorage.setItem("jira_tickets", JSON.stringify(ticketsArr));
+    }
 
     
     // Handling Ticket Removal inside create ticket
