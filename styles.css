@@ -1,75 +1,77 @@
-*{
-	box-sizing: border-box;
+* {
+    box-sizing: border-box;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f6fa;
 }
 
-body{
-	margin: 0;
-	padding: 0;
+.toolbox-cont {
+    height: 5rem;
+    background-color: #4b4b4b;
+    display: flex;
+    align-items: center;
+}
+.toolbox-cont > * {
+    margin-left: 4rem;
+    border-radius: 2px;
+}
+.toolbox-priority-cont {
+    height: 3.5rem;
+    width: 14rem;
+    background-color: #3d3d3d;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.action-btn-cont {
+    height: 3.5rem;
+    width: 6rem;
+    background-color: #3d3d3d;
+    display: flex;
+}
+.action-btn-cont > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    font-size: 2rem;
+    color: #d1d8e0;
+}
+.color {
+    height: 1.2rem;
+    width: 2rem;
+    background-color: lightsalmon;
+    border-radius: 2px;
 }
 
-.toolbox-cont{
-	height: 5rem;
-	background-color: #4b4b4b;
-	display: flex;
-	align-items: center;
+.lightpink {
+    background-color: lightpink;
+}
+.lightgreen {
+    background-color: lightgreen;
+}
+.lightblue {
+    background-color: lightblue;
+}
+.black {
+    background-color: black;
 }
 
-.toolbox-cont > *{
-	margin-left: 4rem;
-	border-radius: 2px;
+.action-btn-cont > *:hover {
+    background-color: #485460;
 }
 
-.toolbox-priority-cont{
-	height: 3.5rem;
-	width: 16rem;
-	background-color: #3d3d3d;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+.modal-cont {
+    height: 50vh;
+    width: 45vw;
+    background: lightblue;
+    position: absolute;
+    top: calc( ( 100vh - 50vh ) / 2 );
+    left: calc( ( 100vw - 45vw ) / 2 );
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
-.action-btn-cont{
-	height: 3.5rem;
-	width: 8rem;
-	background-color:#3d3d3d;
-	display: flex;
-}
-
-.action-btn-cont *{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 50%;
-	font-size: 2rem;
-	color: #d1d8e0;
-	
-}
-
-.color{
-	height: 1.5rem;
-	width: 2.5rem;
-	background-color: lightsalmon;
-	border-radius: 2px;
-	
-	
-}
-
-.lightpink{
-	background-color: lightpink;
-}
-
-.lightblue{
-	background-color: lightblue;
-}
-
-.lightgreen{
-	background-color: lightgreen;
-}
-
-.black{
-	background-color: black;
-}
-
-.action-btn-cont > *:hover{
-	background-color: #485460;
-}

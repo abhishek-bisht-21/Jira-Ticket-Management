@@ -1,0 +1,9 @@
+1) Add btn 
+2) Remove btn
+3) When click on add. A modal opens up, where we can write our task and set a color according to its priority.
+4) A unique key will be given to each created Task.
+5) If no color priority is set. Then default color black will be set.
+6) We can also reset the color, after creating the ticket.
+7) There is a remove btn also with the help of which we can remove the Tickets .
+8) We can do priorityColor Wise filtering
+9) If we doubleClick on any priorityColor then all the tickets will re-appear
