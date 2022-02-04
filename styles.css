@@ -32,6 +32,17 @@ body{
 	height: 3.5rem;
 	width: 8rem;
 	background-color:#3d3d3d;
+	display: flex;
+}
+
+.action-btn-cont *{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	font-size: 2rem;
+	color: #d1d8e0;
+	
 }
 
 .color{
@@ -41,4 +52,24 @@ body{
 	border-radius: 2px;
 	
 	
+}
+
+.lightpink{
+	background-color: lightpink;
+}
+
+.lightblue{
+	background-color: lightblue;
+}
+
+.lightgreen{
+	background-color: lightgreen;
+}
+
+.black{
+	background-color: black;
+}
+
+.action-btn-cont > *:hover{
+	background-color: #485460;
 }
