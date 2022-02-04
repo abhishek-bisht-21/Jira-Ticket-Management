@@ -7,15 +7,25 @@ let textareaCont = document.querySelector(".textarea-cont");
 let allPriorityColors = document.querySelectorAll(".priority-color");
 let toolBoxColors = document.querySelectorAll(".color");
 
-let colors = ["lightpink", "lightblue", "lightgreen", "black"];
-let modalPriorityColor = colors[colors.length - 1];
+let colors = ["lightpink", "lightblue", "lightgreen", "black"]; // Colors array
+let modalPriorityColor = colors[colors.length - 1]; // Black Color is fixed as our Default color
 
 let addFlag = false;
 let removeFlag = false;
 
 
 
+// Listener for modal priority coloring
+allPriorityColors.forEach((colorElem, idx) => {
+    colorElem.addEventListener("click", (e) => {
+        allPriorityColors.forEach((priorityColorElem, idx) => {
+            priorityColorElem.classList.remove("border");
+        })
+        colorElem.classList.add("border");
 
+        modalPriorityColor = colorElem.classList[0];
+    })
+})
 
 
 addBtn.addEventListener("click", (e) => {
