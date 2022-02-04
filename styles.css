@@ -71,7 +71,33 @@ body {
     position: absolute;
     top: calc( ( 100vh - 50vh ) / 2 );
     left: calc( ( 100vw - 45vw ) / 2 );
-    display: none;
+    /* display: none; */
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    display: flex;
+}
+
+.textarea-cont{
+	height: 100%;
+	width: 75%;
+	outline:none;
+	border: none;
+	background-color: lightblue;
+	resize: none;
+}
+
+.priority-colors-cont{
+	height: 100%;
+	width: 25%;
+	background-color: lightgreen;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.priority-color{
+	height: 3.5rem;
+	width: 60%;
+	background-color: lightpink;
 }
 
