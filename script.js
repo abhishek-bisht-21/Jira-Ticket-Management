@@ -79,6 +79,7 @@ function createTicket(ticketColor, ticketTask, ticketID) {
     // Handling Ticket Removal inside create ticket
     handleRemoval(ticketCont, id);
     handleLock(ticketCont,id);
+    handleColor(ticketCont,id);
 
  
 }
@@ -124,6 +125,33 @@ function handleLock(ticket, id) {
         localStorage.setItem("jira_tickets", JSON.stringify(ticketsArr));
     })
 }
+
+
+function handleColor(ticket, id) {
+    let ticketColor = ticket.querySelector(".ticket-color");
+    ticketColor.addEventListener("click", (e) => {
+        // Get ticketIdx from the tickets array
+        let ticketIdx = getTikcetIdx(id);
+
+        let currentTicketColor = ticketColor.classList[1];
+        // Get ticket color idx
+        let currentTicketColorIdx = colors.findIndex((color) => {
+            return currentTicketColor === color;
+        })
+        console.log(currentTicketColor, currentTicketColorIdx);
+        currentTicketColorIdx++;
+        let newTicketColorIdx = currentTicketColorIdx % colors.length;
+        let newTicketColor = colors[newTicketColorIdx];
+        ticketColor.classList.remove(currentTicketColor);
+        ticketColor.classList.add(newTicketColor);
+
+        // Modify data in localStorage (priority color change)
+        ticketsArr[ticketIdx].ticketColor = newTicketColor;
+        localStorage.setItem("jira_tickets", JSON.stringify(ticketsArr));
+    })
+}
+
+
 
 // Getting idx for a particular id
 function getTicketIdx(id) {
