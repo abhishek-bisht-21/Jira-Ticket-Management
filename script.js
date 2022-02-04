@@ -105,7 +105,7 @@ function handleLock(ticket, id) {
     let ticketLock = ticketLockElem.children[0];
     let ticketTaskArea = ticket.querySelector(".task-area");
     ticketLock.addEventListener("click", (e) => {
-        let ticketIdx = getTikcetIdx(id);
+        let ticketIdx = getTicketIdx(id);
 
         if (ticketLock.classList.contains(lockClass)) {
             ticketLock.classList.remove(lockClass);
@@ -123,6 +123,14 @@ function handleLock(ticket, id) {
         ticketsArr[ticketIdx].ticketTask = ticketTaskArea.innerText;
         localStorage.setItem("jira_tickets", JSON.stringify(ticketsArr));
     })
+}
+
+// Getting idx for a particular id
+function getTicketIdx(id) {
+    let ticketIdx = ticketsArr.findIndex((ticketObj) => {
+        return ticketObj.ticketID === id;
+    })
+    return ticketIdx;
 }
 
 
