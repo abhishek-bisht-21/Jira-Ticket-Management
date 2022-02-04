@@ -13,7 +13,9 @@ let modalPriorityColor = colors[colors.length - 1]; // Black Color is fixed as o
 let addFlag = false;
 let removeFlag = false;
 
-
+// Lock and Unlock Icons
+let lockClass = "fa-lock";
+let unlockClass = "fa-lock-open";
 
 // Listener for modal priority coloring
 allPriorityColors.forEach((colorElem, idx) => {
@@ -42,6 +44,8 @@ addBtn.addEventListener("click", (e) => {
         modalCont.style.display = "none";
     }
 })
+
+// Adding Toggling feature to removeFlag variable on clicking remove Button
 removeBtn.addEventListener("click", (e) => {
     removeFlag = !removeFlag;
     console.log(removeFlag);
@@ -71,7 +75,28 @@ function createTicket(ticketColor, ticketTask, ticketID) {
     `;
     mainCont.appendChild(ticketCont);
 
+    
+    // Handling Ticket Removal inside create ticket
+    handleRemoval(ticketCont, id);
+
  
+}
+
+// Handling Ticket Removal
+function handleRemoval(ticket, id) {
+    // removeFlag -> true -> remove
+    ticket.addEventListener("click", (e) => {
+        if (!removeFlag) return;
+
+        let idx = getTikcetIdx(id);
+
+        // DB removal
+        ticketsArr.splice(idx, 1);
+        let strTicketsArr = JSON.stringify(ticketsArr);
+        localStorage.setItem("jira_tickets", strTicketsArr);
+        
+        ticket.remove(); //UI removal
+    })
 }
 
 
