@@ -12,7 +12,7 @@ Web App Link : https://abhishek-bisht-21.github.io/Jira-Ticket-Management/
 
 ## 🪶Features
 
-    - Add Tickets and set colors accoring to priority.
+    - Add Tickets and set colors accoring to priority. Use Shift Key To Add.
     - Filter Tickets on basis of priority color.
     - Edit existing Tickets.
     - Feature to Reset priority color.
